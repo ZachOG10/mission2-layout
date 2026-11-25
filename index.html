@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Evolution of Artificial Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070d1c; --panel:#0b1426; --line:rgba(255,255,255,.09); --text:#fff; --muted:#a6b3cc;
+  --l1:#6366f1; --l2:#8b5cf6; --l3:#3b82f6; --l4:#06b6d4; --l5:#2dd4bf;
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.frame{max-width:1440px;min-height:1000px;margin:0 auto;background:
+  radial-gradient(900px 500px at 30% 0%,rgba(59,130,246,.10),transparent 70%),var(--bg)}
+.main{padding:40px 44px 32px;min-width:0}
+h1{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.sub{margin-top:8px;font-size:16px;font-weight:500;color:#7dd3fc}
+.intro{margin-top:14px;max-width:68ch;font-size:14px;line-height:1.6;color:var(--muted)}
+.stage{position:relative;margin-top:28px}
+.pyr{position:absolute;top:0;left:0;width:860px;height:620px;transform-origin:top left}
+.pyr svg{position:absolute;inset:0;width:860px;height:620px}
+.layer{position:absolute;left:0;width:860px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;padding-bottom:10px}
+.lname{position:absolute;top:9px;left:0;right:0;text-align:center;font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--c)}
+.row{display:flex;gap:6px}
+.chip{width:var(--cw);height:54px;padding:6px 8px;border-radius:8px;text-align:left;cursor:pointer;
+  background:rgba(7,13,28,.88);border:1px solid color-mix(in srgb,var(--c) 70%,transparent);color:var(--text);font:inherit;
+  display:flex;flex-direction:column;justify-content:center;gap:2px;transition:background .15s,transform .15s,box-shadow .15s}
+.chip .y{font-size:10px;font-weight:700;color:var(--c);white-space:nowrap}
+.chip .t{font-size:11px;font-weight:600;line-height:1.2}
+.chip:hover{transform:translateY(-2px);background:color-mix(in srgb,var(--c) 22%,#070d1c)}
+.chip:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.chip[aria-pressed="true"]{background:#fff;color:#0a1224;box-shadow:0 0 0 3px var(--c),0 0 22px color-mix(in srgb,var(--c) 70%,transparent)}
+.chip[aria-pressed="true"] .y{color:#0a1224}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:7px}
+.legend i{width:12px;height:12px;border-radius:3px;background:var(--c)}
+.detail{--c:var(--l1);margin:24px auto 0;max-width:1100px}
+.btn{font:inherit;font-size:13px;font-weight:600;color:var(--text);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:8px;padding:9px 14px;cursor:pointer;transition:background .15s,border-color .15s;text-align:left}
+.btn:hover{background:rgba(255,255,255,.10);border-color:var(--c)}
+.btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.btn[aria-current="true"]{background:var(--c);border-color:var(--c);color:#0a1224}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.layer-tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--c)}
+.layer-tag i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.hero{margin-top:24px;padding:32px 36px;border:1px solid var(--line);border-top:3px solid var(--c);border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 16%,transparent),rgba(255,255,255,.02))}
+.year{font-size:64px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--c)}
+.detail h2{margin-top:14px;font-size:32px;font-weight:700;letter-spacing:-.01em;line-height:1.2;outline:none}
+.pill{display:inline-block;margin-top:16px;padding:5px 12px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid var(--c);color:var(--c)}
+.notes{display:grid;grid-template-columns:1fr;gap:16px;margin-top:16px}
+.note p+p{margin-top:12px}
+.year.sm{font-size:40px}
+.note{padding:22px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.note h3{font-size:14px;font-weight:700;color:var(--c);margin-bottom:8px}
+.note p{font-size:16px;line-height:1.65;color:var(--muted)}
+.same{margin-top:16px;padding:18px 22px;border:1px solid var(--line);border-radius:12px}
+.same h3{font-size:13px;font-weight:700;margin-bottom:10px}
+.same div{display:flex;flex-wrap:wrap;gap:8px}
+.pager{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap}
+.pos{font-size:13px;color:var(--muted)}
+.detail.swap .hero,.detail.swap .note{animation:in .25s ease}
+@keyframes in{from{opacity:.2;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (max-width:1000px){.hero{padding:24px}.year{font-size:48px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="frame">
+  <main class="main">
+    <h1>THE EVOLUTION OF ARTIFICIAL INTELLIGENCE</h1>
+    <p class="sub">From Philosophical Foundations to Generative AI and Beyond</p>
+    <div class="home" id="home">
+    <p class="intro">Artificial intelligence did not appear overnight. It grew from ancient myths of thinking machines, through the first programs and neural networks, setbacks and comebacks, to today's generative models. Select any milestone on the pyramid to open its full story on its own page.</p>
+    <div class="stage" id="stage"><div class="pyr" id="pyr"><svg id="svg" viewBox="0 0 860 620" aria-hidden="true"></svg></div></div>
+    <div class="legend" id="legend" aria-label="Pyramid layers"></div>
+    </div>
+    <section class="detail" id="detail" hidden aria-live="polite"></section>
+  </main>
+</div>
+
+<script>
+const LAYERS=[
+ {n:"FOUNDATIONS OF AI",c:"var(--l1)",hex:"#6366f1",h:110,cw:130,rows:[4]},
+ {n:"EARLY AI & SYMBOLIC SYSTEMS",c:"var(--l2)",hex:"#8b5cf6",h:110,cw:112,rows:[5]},
+ {n:"MACHINE LEARNING & DEEP LEARNING",c:"var(--l3)",hex:"#3b82f6",h:180,cw:110,rows:[3,3]},
+ {n:"GENERATIVE AI & LLMs",c:"var(--l4)",hex:"#06b6d4",h:120,cw:92,rows:[3]},
+ {n:"FUTURE OF AI",c:"var(--l5)",hex:"#2dd4bf",h:100,cw:100,rows:[1]}
+];
+// l = layer index (0 = base). Content follows the supplied research; no extra events.
+const M=[
+{l:0,y:"Before 1950",c:"Philosophical foundations",t:"Early Philosophical Foundations of Artificial Intelligence",s:"Foundations of AI",
+ e:"Early ideas about artificial intelligence and thinking machines.",
+ g:["The idea of creating artificial beings with human-like abilities existed long before modern computers. Ancient Greek mythology described Talos, a mechanical giant created to protect the island of Crete. Early mechanical automata also demonstrated humanity's interest in creating machines that could imitate living things.",
+ "These ideas helped establish the philosophical question of whether human intelligence and behaviour could be reproduced artificially"]},
+{l:0,y:"1950",c:"Turing Test",t:"Alan Turing Proposes the Turing Test",s:"Foundations of AI",
+ e:"Alan Turing publishes Computing Machinery and Intelligence.",
+ g:["British mathematician Alan Turing introduced the idea of evaluating machine intelligence through what became known as the Turing Test. The test considers whether a machine can communicate in a way that makes it difficult for a human evaluator to distinguish it from another human.",
+ "This introduced an important foundation for discussions about machine intelligence and human-computer interaction."]},
+{l:0,y:"1955",c:"Dartmouth proposal",t:"The Proposal for Artificial Intelligence",s:"Foundations of AI",
+ e:"Researchers propose the Dartmouth Summer Research Project on Artificial Intelligence.",
+ g:["John McCarthy, Marvin Minsky, Nathaniel Rochester and Claude Shannon proposed a summer research project focused on artificial intelligence. Their proposal suggested that aspects of learning and intelligence could potentially be described precisely enough for machines to simulate them.",
+ "This proposal established the foundation for the research meeting that would formally launch AI as a recognised field."]},
+{l:0,y:"1956",c:"Birth of AI",t:"The Birth of Artificial Intelligence",s:"Foundations of AI",
+ e:"Dartmouth Summer Research Project on Artificial Intelligence.",
+ g:["The Dartmouth workshop brought researchers together to investigate how machines could simulate human intelligence. John McCarthy is credited with introducing the term Artificial Intelligence.",
+ "The event is widely recognised as the formal beginning of AI as a dedicated research field."]},
+{l:1,y:"1956",c:"Logic Theorist",t:"The Logic Theorist",s:"Symbolic AI",
+ e:"Allen Newell, Herbert Simon and Cliff Shaw develop the Logic Theorist.",
+ g:["The Logic Theorist was an early AI program designed to prove mathematical theorems using symbolic reasoning. It successfully demonstrated that computers could perform certain tasks associated with human logical thinking.",
+ "It established an important foundation for automated reasoning, problem-solving and symbolic AI."]},
+{l:1,y:"1966",c:"ELIZA",t:"ELIZA — An Early Chatbot",s:"Natural Language Processing (NLP)",
+ e:"Joseph Weizenbaum develops ELIZA.",
+ g:["ELIZA was an early computer program designed to simulate human conversation. It used pattern matching and predefined responses to interact with users, particularly by imitating a psychotherapist.",
+ "It demonstrated that computers could simulate aspects of human conversation and helped inspire further research into chatbots and natural language processing."]},
+{l:1,y:"1966–1972",c:"Shakey the Robot",t:"Shakey the Robot",s:"Robotics / AI Planning",
+ e:"Development of Shakey, an early intelligent mobile robot.",
+ g:["Shakey was developed at Stanford Research Institute. It could perceive its surroundings, plan actions and navigate its environment.",
+ "It represented an important step towards combining artificial intelligence with physical machines, influencing future research in autonomous robots and intelligent systems."]},
+{l:1,y:"1980s",c:"Expert Systems",t:"The Rise of Expert Systems",s:"Symbolic AI / Knowledge-Based Systems",
+ e:"Expert systems become commercially successful.",
+ g:["Expert systems were designed to solve specialised problems by applying knowledge and rules collected from human experts. One notable example was XCON, developed for Digital Equipment Corporation to help configure computer systems.",
+ "These systems demonstrated how AI could support business decisions and automate specialised tasks in industries."]},
+{l:1,y:"1986",c:"Backpropagation",t:"Backpropagation and Neural Networks",s:"Neural Networks / Machine Learning",
+ e:"Backpropagation is popularised for training multilayer neural networks.",
+ g:["Researchers David Rumelhart, Geoffrey Hinton and Ronald Williams published influential work demonstrating how backpropagation could train multilayer neural networks.",
+ "The technique allowed networks to adjust their internal weights by calculating how errors contributed to incorrect outputs.",
+ "This became a fundamental technique in modern neural networks and deep learning."]},
+{l:2,y:"1970s",c:"First AI Winter",t:"The First AI Winter",s:"AI History",
+ e:"Reduced funding and interest in AI research.",
+ g:["Early AI systems failed to meet many of the expectations and predictions made by researchers. Limited computing power, technical challenges and unrealistic expectations contributed to reduced funding and research interest.",
+ "This period became known as the AI Winter. It demonstrated that developing intelligent machines was significantly more difficult than initially expected."]},
+{l:2,y:"1997",c:"Deep Blue",t:"Deep Blue Defeats Garry Kasparov",s:"Game AI / Search Algorithms",
+ e:"IBM's Deep Blue defeats world chess champion Garry Kasparov.",
+ g:["IBM's Deep Blue defeated Garry Kasparov in a six-game chess match, becoming the first computer to defeat a reigning world chess champion under standard tournament conditions.",
+ "The achievement demonstrated the ability of computers to analyse enormous numbers of possibilities and make decisions in complex strategic environments."]},
+{l:2,y:"2004–2007",c:"DARPA Challenges",t:"DARPA Autonomous Vehicle Challenges",s:"Robotics / Autonomous Systems / Machine Learning",
+ e:"DARPA Grand Challenge and Urban Challenge.",
+ g:["The Defense Advanced Research Projects Agency organised competitions that challenged research teams to develop vehicles capable of navigating without human drivers.",
+ "The competitions encouraged advances in computer vision, sensors, navigation and autonomous decision-making.",
+ "They contributed to the development of technologies used in modern self-driving vehicle research."]},
+{l:2,y:"2006–2009",c:"Netflix Prize",t:"The Netflix Prize",s:"Machine Learning / Recommendation Systems",
+ e:"Netflix launches a machine-learning recommendation competition.",
+ g:["Netflix introduced a competition challenging researchers to improve its movie recommendation algorithm. Thousands of participants explored different machine-learning techniques to predict users' movie preferences.",
+ "The competition demonstrated the importance of machine learning in understanding user behaviour and improving personalised digital services."]},
+{l:2,y:"2009",c:"ImageNet",t:"ImageNet",s:"Computer Vision / Machine Learning",
+ e:"Fei-Fei Li and her research team introduce the ImageNet dataset.",
+ g:["ImageNet was a large, labelled image dataset developed to support research in visual recognition. It provided researchers with millions of images organised into categories.",
+ "The dataset became an important resource for training and evaluating computer vision systems and contributed significantly to the development of deep learning."]},
+{l:2,y:"2012",c:"AlexNet",t:"The Deep Learning Breakthrough",s:"Deep Learning / Computer Vision",
+ e:"AlexNet achieves a major breakthrough in the ImageNet competition.",
+ g:["AlexNet, developed by Alex Krizhevsky, Ilya Sutskever and Geoffrey Hinton, achieved a major improvement in image classification accuracy during the ImageNet Large Scale Visual Recognition Challenge.",
+ "It demonstrated the effectiveness of deep convolutional neural networks trained using large datasets and GPU computing.",
+ "This achievement accelerated the adoption of deep learning in image recognition and other AI applications."]},
+{l:3,y:"2014",c:"GANs",t:"Generative Adversarial Networks (GANs)",s:"Generative AI / Deep Learning",
+ e:"Ian Goodfellow and other researchers introduce Generative Adversarial Networks.",
+ g:["GANs introduced a framework involving two competing neural networks: a generator and a discriminator. The generator creates artificial data, while the discriminator attempts to distinguish generated data from real data.",
+ "This approach opened new possibilities for generating realistic images, improving image processing and developing synthetic media."]},
+{l:3,y:"2017",c:"Transformer",t:"The Transformer Architecture",s:"Deep Learning / Natural Language Processing / LLMs",
+ e:"Researchers introduce the Transformer architecture in the paper Attention Is All You Need.",
+ g:["The Transformer architecture introduced an attention-based approach that allowed AI models to process relationships between different parts of a sequence more effectively.",
+ "It became the foundation for many modern large language models and significantly advanced machine understanding and generation of human language."]},
+{l:3,y:"2022",c:"ChatGPT",t:"ChatGPT and Mainstream Generative AI",s:"Generative AI / Large Language Models",
+ e:"OpenAI publicly releases ChatGPT.",
+ g:["ChatGPT was released to the public on November 30, 2022. It demonstrated how large language models could interact with people through natural conversations and generate human-like responses.",
+ "It brought generative AI into mainstream use and expanded public access to AI-assisted writing, programming, learning, research and problem-solving."]},
+{l:4,y:"Future / Ongoing Research",cy:"Future",c:"AGI",t:"The Future of Artificial Intelligence — AGI",s:"Artificial General Intelligence (AGI)",
+ e:"Research into Artificial General Intelligence and advanced AI systems.",
+ g:["Artificial General Intelligence refers to a hypothetical form of AI capable of performing a broad range of intellectual tasks at a level comparable to human intelligence. Unlike today's specialised AI systems, AGI would aim to demonstrate flexible learning, reasoning and problem-solving across different domains.",
+ "Although AGI has not been achieved, research into increasingly capable AI systems continues to raise important questions about the future of technology, society and human-machine interaction."]}
+];
+
+const W=860,H=620,TOP=110,GAP=4,wAt=y=>TOP+(W-TOP)*y/H;
+const pyr=document.getElementById("pyr"),svg=document.getElementById("svg"),home=document.getElementById("home"),detail=document.getElementById("detail");
+const counts=LAYERS.map(()=>0); let sel=null;
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+
+// Build layers top (apex) to bottom (base)
+let yTop=0;
+for(let li=LAYERS.length-1;li>=0;li--){
+  const L=LAYERS[li],y0=yTop+GAP/2,y1=yTop+L.h-GAP/2,cx=W/2;
+  const pts=[[cx-wAt(y0)/2,y0],[cx+wAt(y0)/2,y0],[cx+wAt(y1)/2,y1],[cx-wAt(y1)/2,y1]].map(p=>p.join(",")).join(" ");
+  svg.insertAdjacentHTML("beforeend",`<polygon points="${pts}" fill="${L.hex}" fill-opacity=".16" stroke="${L.hex}" stroke-opacity=".8"/>`);
+  const el=document.createElement("div");
+  el.className="layer";el.style.cssText=`top:${yTop}px;height:${L.h}px;--c:${L.c};--cw:${L.cw}px`;
+  el.innerHTML=`<div class="lname">${esc(L.n)}</div>`;
+  const items=M.map((m,i)=>({m,i})).filter(o=>o.m.l===li);
+  let k=0;
+  L.rows.forEach(n=>{
+    const r=document.createElement("div");r.className="row";
+    items.slice(k,k+n).forEach(({m,i})=>{
+      const b=document.createElement("button");
+      b.className="chip";b.type="button";b.dataset.i=i;b.setAttribute("aria-pressed","false");
+      b.innerHTML=`<span class="y">${esc(m.cy||m.y)}</span><span class="t">${esc(m.c)}</span>`;
+      b.addEventListener("click",()=>{location.hash="m"+i});r.appendChild(b);
+    });
+    k+=n;el.appendChild(r);
+  });
+  pyr.appendChild(el);yTop+=L.h;
+}
+
+// Legend (base layer first, matching the pyramid from the bottom up)
+document.getElementById("legend").innerHTML=LAYERS.map((L,i)=>`<span style="--c:${L.c}"><i></i>${i+1}. ${esc(L.n.charAt(0)+L.n.slice(1).toLowerCase().replace(/\bai\b/g,"AI").replace(/\bllms\b/g,"LLMs"))}</span>`).join("");
+
+const cap=t=>esc(t.charAt(0)+t.slice(1).toLowerCase().replace(/\bai\b/g,"AI").replace(/\bllms\b/g,"LLMs"));
+function show(i){
+  const m=M[i],L=LAYERS[m.l],prev=M[i-1],next=M[i+1];
+  document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",String(+c.dataset.i===i)));
+  detail.style.setProperty("--c",L.c);
+  const same=M.map((x,k)=>k).filter(k=>M[k].l===m.l);
+  detail.innerHTML=`<div class="bar"><button class="btn" type="button" data-back>\u2190 Back to pyramid</button><span class="layer-tag"><i></i>Layer ${m.l+1}: ${cap(L.n)}</span></div>
+  <div class="hero"><div class="year${m.y.length>14?" sm":""}">${esc(m.y)}</div><h2 tabindex="-1">${esc(m.t)}</h2><span class="pill">Subfield: ${esc(m.s)}</span></div>
+  <div class="notes">
+    <div class="note"><h3>Event</h3><p>${esc(m.e)}</p></div>
+    <div class="note"><h3>Significance</h3>${m.g.map(t=>`<p>${esc(t)}</p>`).join("")}</div>
+  </div>
+  ${same.length>1?`<div class="same"><h3>Also in this layer</h3><div>${same.map(k=>`<button class="btn" type="button" data-go="${k}" ${k===i?'aria-current="true"':""}>${esc(M[k].cy||M[k].y)}: ${esc(M[k].c)}</button>`).join("")}</div></div>`:""}
+  <div class="pager">
+    ${prev?`<button class="btn" type="button" data-go="${i-1}">\u2190 ${esc(prev.cy||prev.y)}: ${esc(prev.c)}</button>`:"<span></span>"}
+    <span class="pos">Milestone ${i+1} of ${M.length}</span>
+    ${next?`<button class="btn" type="button" data-go="${i+1}">${esc(next.cy||next.y)}: ${esc(next.c)} \u2192</button>`:"<span></span>"}
+  </div>`;
+  home.hidden=true;detail.hidden=false;
+  detail.classList.remove("swap");void detail.offsetWidth;detail.classList.add("swap");
+  scrollTo(0,0);detail.querySelector("h2").focus({preventScroll:true});
+}
+detail.addEventListener("click",e=>{
+  if(e.target.closest("[data-back]")){location.hash="pyramid";return}
+  const g=e.target.closest("[data-go]");if(g)location.hash="m"+g.dataset.go;
+});
+function route(){
+  const r=/^#m(\d+)$/.exec(location.hash),i=r?+r[1]:-1;
+  if(i>=0&&i<M.length){show(i);return}
+  detail.hidden=true;home.hidden=false;fit();
+  const c=document.querySelector('.chip[aria-pressed="true"]');if(c)c.focus({preventScroll:true});
+}
+
+// Scale the 860x620 pyramid to fit narrower screens
+const stage=document.getElementById("stage");
+function fit(){
+  const s=Math.min(1,stage.clientWidth/W);
+  pyr.style.transform=`scale(${s})`;
+  pyr.style.left=Math.max(0,(stage.clientWidth-W*s)/2)+"px";
+  stage.style.height=H*s+"px";
+}
+addEventListener("resize",fit);addEventListener("hashchange",route);fit();route();
+</script>
+</body>
+</html>
