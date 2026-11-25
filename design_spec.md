@@ -2,7 +2,8 @@
 
 **Designer:** Zachariah Aondowase
 **For:** Frontend Developer
-**Reference build:** `index.html` (single file: HTML, CSS and JavaScript, no dependencies except the Inter web font)
+**Reference build:** `index.html` (single file: HTML, CSS and JavaScript, no dependencies except the Inter web font), hosted at https://zachog10.github.io/mission2-layout/. Source code:  https://github.com/ZachOG10/mission2-layout.git
+
 **Live preview:** https://zachog10.github.io/mission2-layout/
 
 ## 1. Tool choice
@@ -109,6 +110,7 @@ Each milestone has its own link (`#m0` to `#m18`) so it can be shared. All text 
 
 ## 11. Files to hand over
 
-- `index.html`: working reference build (all styles and scripts inside).
+- Live interactive design: https://zachog10.github.io/mission2-layout/
+- Source code (`index.html`, all styles and scripts inside): https://github.com/ZachOG10/mission2-layout.git
 - `design-spec.md`: this document.
-- Research text: the milestone notes in the `M` array at the top of the script are the final content.
+- Research text: the milestone notes in the `M` array at the top of the script in `index.html` are the final content.
